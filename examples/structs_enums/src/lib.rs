@@ -1,4 +1,6 @@
-#[derive(Debug, PartialEq, Eq)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Task {
     pub title: String,
     pub done: bool,
