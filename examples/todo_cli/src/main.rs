@@ -1,5 +1,4 @@
 use std::fs;
-use std::path::Path;
 use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
@@ -23,8 +22,13 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Show the current task list without changing anything
+    List,
+
     /// Mark a task done by its 1-based index
     Done { index: usize },
+    /// Remove a task by its 1-based index
+    Remove { index: usize },
 }
 
 fn main() {
@@ -33,6 +37,7 @@ fn main() {
     let mut tasks = load_tasks_from(&tasks_file).unwrap_or_else(|_| default_tasks());
 
     match (&cli.command, &cli.title) {
+        (Some(Commands::List), _) => {}
         (Some(Commands::Done { index }), _) => {
             if let Some(task) = tasks.get_mut(index.saturating_sub(1)) {
                 task.done = true;
@@ -41,6 +46,16 @@ fn main() {
                 }
             } else {
                 eprintln!("warning: task {} does not exist", index);
+            }
+        }
+        (Some(Commands::Remove { index }), _) => {
+            if *index == 0 || *index > tasks.len() {
+                eprintln!("warning: task {} does not exist", index);
+            } else {
+                tasks.remove(index.saturating_sub(1));
+                if let Err(error) = save_tasks_to(&tasks, &tasks_file) {
+                    eprintln!("warning: could not save tasks: {}", error);
+                }
             }
         }
         (None, Some(title)) => {
@@ -72,14 +87,6 @@ fn default_tasks() -> Vec<Task> {
             done: true,
         },
     ]
-}
-
-fn load_tasks() -> Result<Vec<Task>, std::io::Error> {
-    load_tasks_from(&PathBuf::from(TASKS_FILE))
-}
-
-fn save_tasks(tasks: &[Task]) -> Result<(), std::io::Error> {
-    save_tasks_to(tasks, &PathBuf::from(TASKS_FILE))
 }
 
 fn load_tasks_from(path: &PathBuf) -> Result<Vec<Task>, std::io::Error> {
