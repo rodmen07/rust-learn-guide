@@ -82,3 +82,11 @@ Here `'a` ties the output lifetime to the shorter of the two input references.
 ## Next
 
 - Continue to Chapter 5 for functions and an emphasis on passing references to functions and returning owned vs borrowed values.
+
+Examples
+
+- A runnable example demonstrating `longest()` and mutable-borrow behavior is available at `examples/borrow_examples`.
+
+Solutions
+
+- A solution write-up for the borrowing exercises is in `solutions/borrow_examples.md`.
