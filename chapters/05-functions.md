@@ -86,6 +86,8 @@ print_label(String::from("owned"));
 1. Implement `fn join_names<A: AsRef<str>>(a: A, b: A) -> String` that returns `"a b"`.
 2. Write tests for `join_names` accepting both `&str` and `String` inputs.
 3. Refactor an earlier example to use `AsRef<str>` where it improves ergonomics.
+ 
+Example crate: `examples/join_names` contains an implementation and tests. See `solutions/join_names.md` for a suggested solution.
 
 ## Challenge
 
