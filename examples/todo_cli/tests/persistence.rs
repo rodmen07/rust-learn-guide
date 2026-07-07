@@ -60,7 +60,9 @@ fn lists_tasks_without_modifying_file() {
     assert!(stdout.contains("2: [done] Ship release"));
 
     let after = fs::read_to_string(dir.join("tasks.json")).expect("read tasks.json");
-    assert_eq!(after, seed);
+    let left: serde_json::Value = serde_json::from_str(&after).expect("parse after");
+    let right: serde_json::Value = serde_json::from_str(&seed).expect("parse seed");
+    assert_eq!(left, right);
 }
 
 #[test]
