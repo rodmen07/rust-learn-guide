@@ -1,0 +1,7 @@
+# Rust
+target/
+**/target-*/
+*.exe
+*.pdb
+.vscode/
+.idea/
