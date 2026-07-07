@@ -1,0 +1,3 @@
+done|Read the Rust book
+done|Build a small CLI
+todo|Persist this task

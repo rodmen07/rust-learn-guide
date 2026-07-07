@@ -1,0 +1,16 @@
+# Summary
+
+- [Introduction](chapters/01-introduction.md)
+- [Getting Started](chapters/02-getting-started.md)
+- [Variables and Types](chapters/03-variables-and-types.md)
+- [Ownership Basics](chapters/04-ownership.md)
+- [Functions](chapters/05-functions.md)
+- [Next Steps](chapters/06-next-steps.md)
+- [Structs and Enums](chapters/07-structs-and-enums.md)
+- [Pattern Matching](chapters/08-pattern-matching.md)
+- [Error Handling](chapters/09-error-handling.md)
+- [Modules and Crates](chapters/10-modules-and-crates.md)
+- [Testing](chapters/11-testing.md)
+- [Collections and Iterators](chapters/12-collections-and-iterators.md)
+- [Async Basics](chapters/13-async-basics.md)
+- [Capstone Project](chapters/14-capstone-project.md)

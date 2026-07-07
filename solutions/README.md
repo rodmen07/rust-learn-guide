@@ -1,0 +1,15 @@
+# Solutions Index
+
+- [Introduction](01-introduction.md)
+- [Getting Started](02-getting-started.md)
+- [Variables and Types](03-variables-and-types.md)
+- [Ownership Basics](04-ownership.md)
+- [Functions](05-functions.md)
+- [Next Steps](06-next-steps.md)
+- [Structs and Enums](07-structs-and-enums.md)
+- [Pattern Matching](08-pattern-matching.md)
+- [Error Handling](09-error-handling.md)
+- [Modules and Crates](10-modules-and-crates.md)
+- [Testing](11-testing.md)
+- [Collections and Iterators](12-collections-and-iterators.md)
+- [Async Basics](13-async-basics.md)
