@@ -4,6 +4,7 @@
 - [Getting Started](chapters/02-getting-started.md)
 - [Variables and Types](chapters/03-variables-and-types.md)
 - [Ownership Basics](chapters/04-ownership.md)
+- [Borrowing](chapters/04a-borrowing.md)
 - [Functions](chapters/05-functions.md)
 - [Next Steps](chapters/06-next-steps.md)
 - [Structs and Enums](chapters/07-structs-and-enums.md)
