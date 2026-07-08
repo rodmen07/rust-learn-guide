@@ -29,6 +29,8 @@ enum Commands {
     Done { index: usize },
     /// Remove a task by its 1-based index
     Remove { index: usize },
+    /// Edit a task's title by its 1-based index
+    Edit { index: usize, title: Vec<String> },
 }
 
 fn main() {
@@ -55,6 +57,19 @@ fn main() {
                 tasks.remove(index.saturating_sub(1));
                 if let Err(error) = save_tasks_to(&tasks, &tasks_file) {
                     eprintln!("warning: could not save tasks: {}", error);
+                }
+            }
+        }
+        (Some(Commands::Edit { index, title }), _) => {
+            if *index == 0 || *index > tasks.len() {
+                eprintln!("warning: task {} does not exist", index);
+            } else {
+                let new_title = title.join(" ");
+                if let Some(task) = tasks.get_mut(index.saturating_sub(1)) {
+                    task.title = new_title;
+                    if let Err(error) = save_tasks_to(&tasks, &tasks_file) {
+                        eprintln!("warning: could not save tasks: {}", error);
+                    }
                 }
             }
         }

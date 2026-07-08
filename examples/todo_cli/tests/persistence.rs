@@ -91,3 +91,30 @@ fn removes_task_and_persists_json() {
     assert_eq!(parsed.as_array().unwrap().len(), 1);
     assert_eq!(parsed[0]["title"], serde_json::Value::String(String::from("Ship release")));
 }
+
+#[test]
+fn edits_task_and_persists_json() {
+    let dir = temp_run_dir();
+    let exe = env!("CARGO_BIN_EXE_todo_cli");
+
+    let seed = serde_json::to_string_pretty(&[
+        serde_json::json!({"title": "Write docs", "done": false}),
+        serde_json::json!({"title": "Ship release", "done": true}),
+    ])
+    .expect("seed json");
+    fs::write(dir.join("tasks.json"), &seed).expect("seed tasks.json");
+
+    let output = Command::new(exe)
+        .current_dir(&dir)
+        .arg("edit")
+        .arg("1")
+        .arg("Write more docs")
+        .output()
+        .expect("run todo_cli edit");
+
+    assert!(output.status.success());
+
+    let content = fs::read_to_string(dir.join("tasks.json")).expect("read tasks.json");
+    let parsed: serde_json::Value = serde_json::from_str(&content).expect("parse json");
+    assert_eq!(parsed[0]["title"], serde_json::Value::String(String::from("Write more docs")));
+}
